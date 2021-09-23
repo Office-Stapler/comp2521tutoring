@@ -8,10 +8,10 @@ typedef struct node {
 } Node;
 
 typedef Node *List;
-
 Node* newNode(int);
 List makeList(int[], int);
 void freeList(List);
+
 int listLength(List);
 int listCountOdds(List);
 bool listIsSorted(List);
@@ -21,6 +21,12 @@ List listDelete(List, int);
 int main(void) {
     int a[] = {1,2,3,4,5,6,7};
     List l = makeList(a, 7);
+    
+    printf("Length: %d\n", listLength(l));
+    printf("Number of odd values: %d\n", listCountOdds(l));
+    printf("Is the list sorted? %s\n", listIsSorted(l) ? "Yes" : "No");
+
+    freeList(l);
 }
 
 Node* newNode(int val) {
@@ -50,7 +56,7 @@ void freeList(List l) {
     while (curr != NULL) {
         Node* next = curr->next;
         free(curr);
-        curr = curr->next;
+        curr = next;
     }
 }
 
