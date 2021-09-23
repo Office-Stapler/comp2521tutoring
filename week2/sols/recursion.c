@@ -43,6 +43,7 @@ Node* newNode(int val) {
     Node* new = malloc(sizeof(Node));
     new->next = NULL;
     new->data = val;
+    return new;
 }
 
 List makeList(int a[], int size) {
