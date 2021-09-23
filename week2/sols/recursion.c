@@ -12,7 +12,6 @@ Node* newNode(int);
 List makeList(int[], int);
 void freeList(List);
 
-void printList(List);
 int listLength(List);
 int listCountOdds(List);
 bool listIsSorted(List);
@@ -26,9 +25,7 @@ int main(void) {
     printf("Length: %d\n", listLength(l));
     printf("Number of odd values: %d\n", listCountOdds(l));
     printf("Is the list sorted? %s\n", listIsSorted(l) ? "Yes" : "No");
-    printf("List before deletion: \n");
-    printList(l);
-    
+
     freeList(l);
 }
 
@@ -63,28 +60,38 @@ void freeList(List l) {
     }
 }
 
-void printList(List l) {
-    if (l == NULL) {
-        printf("NULL\n");
-    } else {
-        printf("%d -> ", l->data);
-        printList(l->next);   
-    }
-
-}
-
 int listLength(List l) {
-    return 0;
+    if (l == NULL) {
+        return 0;
+    }
+    return 1 + listLength(l->next);
 }
 
 int listCountOdds(List l) {
-    return 0;
+    if (l == NULL) {
+        return 0;
+    }
+    return (l->data % 2) + listCountOdds(l->next);
 }
 
 bool listIsSorted(List l) {
-    return true;
+    if (l == NULL || l->next == NULL) {
+        return true;
+    }
+    return (l->data <= l->next->data) && listIsSorted(l->next);
 }
 
 List listDelete(List l, int val) {
-    return NULL;
+    if (l == NULL) {
+        return l;
+    }
+    
+    if (l->data == val) {
+        Node* next = l->next;
+        free(l);
+        return next;
+    }
+    l->next = listDelete(l->next, val);
+    
+    return l;
 }
