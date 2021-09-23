@@ -19,4 +19,6 @@ int main(void) {
     printf("Last vector combination\n");
     Vector v = makeVector(n1->value, n2->value);
     printVector(v);    
+    freeList(l1);
+    freeList(l2);
 }

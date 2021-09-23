@@ -33,3 +33,13 @@ int countNodes(List l)  {
     for (node* curr = l->head; curr != NULL; curr = curr->next, ++count);
     return count;
 }
+
+void freeList(List l) {
+    node* curr = l->head;
+    while (curr != NULL) {
+        node* next = curr->next;
+        free(curr);
+        curr = next;
+    }
+    free(l);
+}

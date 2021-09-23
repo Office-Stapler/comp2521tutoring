@@ -12,4 +12,5 @@ void appendList(List, int);
 List newList(void);
 List makeList(int[], int);
 int countNodes(List);
+void freeList(List);
 
