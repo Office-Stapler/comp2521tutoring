@@ -20,7 +20,7 @@ List listDelete(List, int);
 
 int main(void) {
     int a[] = {1,2,3,4,5,6,7};
-    List l = makeList(a);
+    List l = makeList(a, 7);
 }
 
 Node* newNode(int val) {
