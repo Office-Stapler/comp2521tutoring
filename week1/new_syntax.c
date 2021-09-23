@@ -12,7 +12,7 @@ char* numToDay(int n);
 bool isSorted(int *a, int n);
 
 int main(void) {
-    
+    q4();
 }
 
 void q1_1(char ch) {
@@ -55,6 +55,11 @@ char* numToDay(int n) {
 	} else if (n == 6) {
 		day = "Sat";
 	}
+	
+	switch (n) {
+	    case 0: day = "Sun"; break;
+	    case 1: day = "Mon"; break;
+	}
 	return day;
 }
 
@@ -69,16 +74,19 @@ void q3(char ch) {
     	default:
     		printf("consonant"); break;
     }
+ 
 }
 
 void q4() {
     int ch = getchar();
     char *type;
-    if (isdigit(ch)) {
+    /* if (isdigit(ch)) {
         type = "digit";
     } else {
         type = "non-digit";
     }
+     */
+    type = isdigit(ch) ? "digit" : "non-digit";
     
     printf("'%c' is a %s\n", ch, type);
 }

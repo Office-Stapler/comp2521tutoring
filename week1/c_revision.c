@@ -21,13 +21,13 @@ void q1() {
 void q2() {
     int x,y;
     char *c, *d, *e, *f;
-    char* c1, c2, c3, c4;
+    char *c1, c2, c3, c4;
     x = y = 2;
     c = d = "abc";
     e = "xyz"; f = "xyz";
+    printf("%p, %p", e, f);
     
     x++;
-    *c = 'A';
 }
 
 void swap (int a[], int i, int j) {

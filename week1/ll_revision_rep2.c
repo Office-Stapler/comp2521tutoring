@@ -19,5 +19,11 @@ int main(void) {
 }
 
 int sum(List l) {
-    return 0;
+    int sum = 0;
+    struct node* curr = l->head;
+    while (curr != NULL) {
+        sum += curr->value;
+        curr = curr->next;
+    }
+    return sum;
 }
