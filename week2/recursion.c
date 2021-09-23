@@ -70,7 +70,6 @@ void printList(List l) {
         printf("%d -> ", l->data);
         printList(l->next);   
     }
-
 }
 
 int listLength(List l) {

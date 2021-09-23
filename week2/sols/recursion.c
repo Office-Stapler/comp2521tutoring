@@ -12,6 +12,7 @@ Node* newNode(int);
 List makeList(int[], int);
 void freeList(List);
 
+void printList(List);
 int listLength(List);
 int listCountOdds(List);
 bool listIsSorted(List);
@@ -27,6 +28,15 @@ int main(void) {
     printf("Is the list sorted? %s\n", listIsSorted(l) ? "Yes" : "No");
 
     freeList(l);
+}
+
+void printList(List l) {
+    if (l == NULL) {
+        printf("NULL\n");
+    } else {
+        printf("%d -> ", l->data);
+        printList(l->next);   
+    }
 }
 
 Node* newNode(int val) {
