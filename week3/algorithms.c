@@ -4,7 +4,6 @@ void o1(int a[], int size);
 void on(int a[], int size);
 void on2(int a[], int size);
 
-
 int main(void) {
     int size;
     scanf("%d", &size);
