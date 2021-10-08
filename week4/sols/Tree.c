@@ -144,7 +144,7 @@ int BSTreeCountGreater(BSTree t, int val) {
     }
     
     if (t->value > val) {
-        return 1 + BSTreeCountGreater(t->left, val) + BSTreeCountGreater(t->right + val);
+        return 1 + BSTreeCountGreater(t->left, val) + BSTreeCountGreater(t->right, val);
     }
     
     return BSTreeCountGreater(t->right, val);
