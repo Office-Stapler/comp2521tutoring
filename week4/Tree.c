@@ -27,7 +27,9 @@ void doInfixTraversal(BSTree root) {
     if (root == NULL) {
         return;
     }
-
+    doInfixTraversal(root->left);
+    printf("%d ", root->value);
+    doInfixTraversal(root->right);
 }
 
 void BSTreeInfixTraversal(BSTree root) {
@@ -40,7 +42,9 @@ void doBSTreePostfixTraversal(BSTree root) {
     if (root == NULL) {
         return;
     }
-    
+    doBSTreePostfixTraversal(root->left);
+    doBSTreePostfixTraversal(root->right);
+    printf("%d ", root->value);
 }
 
 void BSTreePostfixTraversal(BSTree root) {
@@ -53,7 +57,9 @@ void doBSTreePrefixTraversal(BSTree root) {
     if (root == NULL) {
         return;
     }
-    
+    printf("%d ", root->value);
+    doBSTreePrefixTraversal(root->left);
+    doBSTreePrefixTraversal(root->right);
 }
 
 void BSTreePrefixTraversal(BSTree root) {
@@ -64,27 +70,89 @@ void BSTreePrefixTraversal(BSTree root) {
 
 
 int BSTreeNumNodes(BSTree root) {
-    return 0;
+    if (root == NULL) {
+        return 0;
+    }
+    int countLeft = BSTreeNumNodes(root->left);
+    int countRight = BSTreeNumNodes(root->right);
+    
+    return 1 + countLeft + countRight;
 }
 
 int BSTreeCountOdds(BSTree root) {
-    return 0;
+    // Base Case
+    if (root == NULL) {
+        return 0;
+    }
+    return (root->value % 2) + BSTreeCountOdds(root->left) + BSTreeCountOdds(root->right);
 }
 
 int BSTreeHeight(BSTree root) {
-    return 0;
+    // Base case
+    if (root == NULL) {
+        return -1;
+    }
+    
+    int leftHeight = BSTreeHeight(root->left);
+    int rightHeight = BSTreeHeight(root->right);
+    
+    if (leftHeight > rightHeight) {
+        return leftHeight + 1;
+    }
+    
+    return rightHeight + 1;
 }
-
+/**
+Implement the following function to count number of internal nodes in a given tree. 
+An internal node is a node with at least one non-empty subtree. 
+*/
 int BSTreeCountInternal(BSTree root) {
-    return 0; 
+    if (root == NULL) {
+        return 0;
+    }
+    
+    if (root->left == NULL && root->right == NULL) {
+        return 0;
+    }
+    int leftCount = BSTreeCountInternal(root->left);
+    int rightCount = BSTreeCountInternal(root->right);
+    
+    return 1 + leftCount + rightCount;
 }
 
-int BSTreeNodeLevel(BSTree root, int key) { 
-    return 0; 
+int BSTreeNodeLevel(BSTree root, int key) {
+    if (root == NULL) {
+        return -1;
+    }
+    
+    if (root->value > key) {
+        int leftNodeLevel = BSTreeNodeLevel(root->left, key);
+        if (leftNodeLevel == -1) return -1;
+        return 1 + leftNodeLevel;
+    }
+    
+    if (root->value == key) {
+        return 0;
+    }
+    
+    int rightNodeLevel = BSTreeNodeLevel(root->right, key);
+    if (rightNodeLevel == -1) return -1;
+    return 1 + rightNodeLevel;
 }
 
 int BSTreeCountGreater(BSTree root, int val) { 
-    return 0; 
+    if (root == NULL) {
+        return 0;
+    }
+    
+    if (root->value < val) {
+        BSTreeCountGreater(root->right, val);
+    }
+    
+    int countLeft = BSTreeCountGreater(root->left, val);
+    int countRight = BSTreeCountGreater(root->right, val);
+    return 1 + countLeft + countRight; 
+    
 }
 
 int isHeightBalanced(BSTree root) { 

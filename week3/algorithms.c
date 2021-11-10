@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 void o1(int a[], int size);
 void on(int a[], int size);
 void on2(int a[], int size);
@@ -18,6 +19,9 @@ int main(void) {
 
 void o1(int a[], int size) {
     printf("Example of an O(1) Alogrithm: \n");
+    for (int i = 0; i < 100; ++i) {
+        printf("%d\n", i);
+    }
     printf("%d\n", a[size - 1]);
 }
 
@@ -36,5 +40,11 @@ void on2(int a[], int size) {
             printf("(%d %d) ", a[i], a[j]);
         }
         putchar('\n');
+    }
+}
+
+void printCharacters(char* string) {
+    for (int i = 0; i < strlen(string); ++i) {
+        putchar(string[i]);
     }
 }
